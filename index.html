@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vous êtes un robot ?</title>
+  </head>
+  <body>
+    <h1>Merci de recopier cette chaîne de caractères</h1>
+    <div>
+      <span id="random"></span>
+      <input type="text" id="input" placeholder="Entrez le texte ici">
+      <button id="submit">Vérifier</button>
+    </div>    
+  <script>
+    const input = document.getElementById('input');
+    const submit = document.getElementById('submit');
+    const random = document.getElementById('random');
+
+    function generateRandomString(length) {
+      let result = '';
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return result;
+    }
+
+    const compareString = generateRandomString(6);
+
+    random.textContent = compareString;
+
+   
+
+    function verifyString(stringToVerify) {
+      return mypromise = new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          if(compareString === stringToVerify){
+            resolve('reussi')
+
+          }else{
+            reject('échoué')
+          }
+        },2000)
+      })
+  
+    }
+
+    submit.addEventListener('click', () => {
+      const inputString = input.value;
+
+      verifyString(input.value)
+
+      mypromise.then(result => {
+        alert(result)
+      })
+      .catch(error => {
+        alert(error)
+      })
+      
+    });
+
+  </script>
+  </body>
+</html>
